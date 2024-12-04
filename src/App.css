@@ -1,0 +1,306 @@
+:root {
+  --background-color: #1A1D3B; /* Deep blueish-purple background */
+  --foreground-color: #23274D; /* Slightly lighter dark shade for content areas */
+  
+  --primary-color: #4B4E73; /* Muted dark blue-purple for primary accents */
+  --secondary-color: #6D71A1; /* Soft, muted medium blue for secondary elements */
+  --highlight-color: #8A8FB1; /* Very subtle, soft purple for highlights */
+  
+  --text-color: #E1E3EE; /* Soft off-white text color for readability */
+  --muted-text-color: #A1A7B2; /* Light grayish-blue for muted text */
+  
+  --input-bg-color: #2A2E49; /* Darker background for input fields */
+  --input-border-color: #3A3F67; /* Subtle dark grayish-blue border for inputs */
+  --input-focus-color: #4F5476; /* Dark blue-gray for focused input borders */
+  
+  --button-bg-color: #3C3F62; /* Deep blue-gray button background */
+  --button-hover-color: #5C607E; /* Slightly lighter, muted blue-gray for hover */
+  --button-border-radius: 30px; /* Rounded button edges for a smooth look */
+  
+  --table-border-color: #2F3249; /* Dark grayish-blue for table borders */
+  --table-header-bg-color: #282C42; /* Dark, subdued background for table headers */
+  --table-text-color: #E1E3EE; /* Light, easy-to-read text in white for tables */
+  --table-header-text-color: #E1E3EE; /* White text on dark table headers for contrast */
+}
+
+
+*{
+  font-family: "Monaco", monospace;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Monaco", monospace;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items at the top */
+  height: 100vh;
+  width: 100%;
+}
+
+h1, h2, h3{
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  text-align: left;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.form-container {
+  background-color: var(--foreground-color);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  width: 150%;
+  max-width: 1500px; /* Larger width */
+  margin-top: 2rem;
+}
+
+label {
+  font-size: 16px;
+  color: var(--muted-text-color);
+  margin-bottom: 8px;
+  display: block;
+  text-align: left;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 95%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 50px;
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: var(--input-focus-color);
+  outline: none;
+}
+
+button {
+  font-family: "Monaco", monospace;
+  width: 30%;
+  margin: auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  background-color: var(--button-bg-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: var(--button-hover-color);
+}
+
+#error {
+  color: #ff5252;
+  margin-top: 10px;
+}
+
+#table-container {
+  margin-top: 30px;
+  width: 100%;
+  overflow-x: auto;
+  max-width: 100%; /* Allow it to take the entire width */
+  display: flex;
+  justify-content: center;
+  gap: 7px; /* Space between each box */
+}
+
+#table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#vigenereTable {
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  background-color: var(--foreground-color);
+}
+
+#vigenereTable th,
+#vigenereTable td {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid var(--table-border-color);
+  font-size: 16px;
+}
+
+#vigenereTable th {
+  background-color: var(--table-header-bg-color);
+  color: var(--table-header-text-color);
+  font-weight: bold;
+}
+
+.table-row:hover {
+  background-color: var(--secondary-color);
+}
+
+.highlight-cell {
+  background-color: var(--background-color) !important;
+  color: #fff;
+  font-weight: bold;
+}
+
+.highlight-row {
+  background-color: rgba(66, 133, 244, 0.2);
+}
+
+.highlight-col {
+  background-color: rgba(66, 133, 244, 0.2);
+}
+
+/* Buttons for Table (if you need pagination or action buttons) */
+button.primary {
+  background-color: var(--primary-color);
+}
+
+button.primary:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Adjust table styling for readability */
+#vigenereTable th, #vigenereTable td {
+  font-size: 16px;
+  padding: 12px;
+}
+
+#vigenereTable th {
+  font-weight: bold;
+}
+
+#vigenereTable tr {
+  transition: background-color 0.3s;
+}
+
+#vigenereTable tr:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Disable vertical scroll, keep horizontal scroll */
+body {
+  overflow-x: hidden;  /* Disables vertical scrolling */
+  overflow-y: auto;    /* Allows horizontal scrolling */
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;   /* Adjusted scrollbar width */
+  height: 12px;  /* Horizontal scrollbar height */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 6px;
+  display: block;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--highlight-color);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--foreground-color);
+}
+
+
+/* Tape Section */
+/* Tape Section */
+#result {
+  margin-top: 20px; /* Reduced margin to make it more compact */
+  font-family: monospace;
+  color: #f1f1f1; /* Light text for tape */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Boxed Tape Styles */
+.tape-box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px; /* Reduced space between each box for a tighter layout */
+  margin-bottom: 10px; /* Reduced space between steps */
+}
+
+/* Individual Tape Box */
+.tape-box {
+  display: inline-block;
+  padding: 6px; /* Reduced padding for smaller cells */
+  border: 1px solid #444;
+  background-color: #333; /* Dark background for tape cells */
+  color: #f1f1f1; /* Light text inside each cell */
+  font-size: 14px; /* Smaller font size for a more compact look */
+  width: 40px; /* Slightly smaller width */
+  height: 40px; /* Slightly smaller height */
+  text-align: center;
+  line-height: 24px; /* Centers the text vertically */
+  border-radius: 4px; /* Slightly smaller border radius */
+}
+
+/* Highlight the head with gold */
+.tape-box.head {
+  background-color: #555; /* Lighter background for the current head position */
+}
+
+/* Darker background for start and end markers */
+.tape-box.start,
+.tape-box.end {
+  background-color: #222;
+}
+
+/* Add hover effect to make the tape more interactive */
+.tape-box:hover {
+  background-color: #444; /* Slightly lighter on hover */
+  cursor: pointer;
+}
+
+.encryption-result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button-container .horizontal {
+  flex-direction: row;
+}
+
+.result-summary {
+  margin-bottom: 20px;
+} 
+
+.control-button {
+  margin-top: 20px;
+}
