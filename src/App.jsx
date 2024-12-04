@@ -11,6 +11,7 @@ function App() {
   const [key, setKey] = useState('');
   const [isTableSelected, setIsTableSelected] = useState(false);
   const [isStateSelected, setIsStateSelected] = useState(false);
+  const [isMultiTapeSelected, setIsMultiTapeSelected] = useState(false);
   const [mode, setMode] = useState('encrypt');
   const [decryptedWord, setDecryptedWord] = useState('');
   const [buttonLayout, setButtonLayout] = useState('horizontal');
@@ -104,6 +105,10 @@ function App() {
             </div>
           </>
         )}
+
+          <button onClick={() => setIsTableSelected(false)} style={{
+            marginBottom: '20px'
+      }} >Hide</button>
         </>
       )}
 
@@ -121,11 +126,14 @@ function App() {
       <div id='states-diagram-container'>
         <img src={States_Diagram} alt="States Diagram" />
       </div> 
+
+      <button onClick={() => setIsStateSelected(false)} style={{
+        marginBottom: '20px'
+      }} >Hide</button>
         </>
       )}
 
       <hr/>
-
       <h2 style={{
         marginTop: '20px',
       }} >Multi-Tape Representation</h2>
