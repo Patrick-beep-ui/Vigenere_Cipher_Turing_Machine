@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Tape from './components/Tape';
 import Table from './components/Table';
+import MultiTape from './components/MultiTape';
+import States_Diagram from '/public/img/States_Diagram.jpg'
 //import Decrypt from './components/Decrypt';
 
 function App() {
   const [word, setWord] = useState('');
   const [key, setKey] = useState('');
   const [isTableSelected, setIsTableSelected] = useState(false);
+  const [isStateSelected, setIsStateSelected] = useState(false);
   const [mode, setMode] = useState('encrypt');
   const [decryptedWord, setDecryptedWord] = useState('');
   const [buttonLayout, setButtonLayout] = useState('horizontal');
@@ -22,6 +25,7 @@ function App() {
     setIsTableSelected(false); 
     setMode('encrypt');
     setDecryptedWord('');
+    setIsStateSelected(false);
   };
 
   const getDecryptedWord = () => {
@@ -33,8 +37,7 @@ function App() {
     } else {
       console.log("Decrypted word element not found.");
     }
-  };
-  
+  }; 
 
   return (
     <div className="form-container">
@@ -76,7 +79,11 @@ function App() {
         </div>
       )}
 
-      <button onClick={() => setIsTableSelected(true)} >Show table</button>
+<hr/>
+
+      <button onClick={() => setIsTableSelected(true)} style={{
+        marginTop: '20px'
+      }}  >Show table</button>
 
       {isTableSelected && (
         <>
@@ -99,6 +106,35 @@ function App() {
         )}
         </>
       )}
+
+      <hr/>
+
+      <button onClick={() => setIsStateSelected(true)} style={{
+        marginTop: '20px'
+      }}  >Show States Diagram </button>      
+
+      {isStateSelected && (
+        <>
+        <h2 style={{
+          marginTop: '20px',
+          }}> States Diagram</h2>
+      <div id='states-diagram-container'>
+        <img src={States_Diagram} alt="States Diagram" />
+      </div> 
+        </>
+      )}
+
+      <hr/>
+
+      <h2 style={{
+        marginTop: '20px',
+      }} >Multi-Tape Representation</h2>
+      {word && key && (
+        <div id="multi-tape-result">
+          <MultiTape tapeKey={key} word={word} mode={mode}/>
+        </div>
+      )}
+    
     </div>
   );
 }

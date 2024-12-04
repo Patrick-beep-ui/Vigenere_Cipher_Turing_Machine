@@ -304,3 +304,10 @@ body {
 .control-button {
   margin-top: 20px;
 }
+
+#states-diagram-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
